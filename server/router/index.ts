@@ -15,8 +15,9 @@ router.post(
 );
 router.post("/user/login", UserController.login);
 router.post("/user/logout", UserController.logout);
-router.post("/user/refresh", UserController.refresh);
+router.get("/user/refresh", UserController.refresh);
 
+router.get("/posts/myposts", authMw, PostController.getMyPosts);
 router.post("/posts/create", authMw, PostController.createPost);
 router.put("/posts/edit/:id", authMw, PostController.editPost);
 router.put("/posts/delete/:id", authMw, PostController.deletePost);

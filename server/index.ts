@@ -12,9 +12,14 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 export const prisma = new PrismaClient();
 
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:3000", "http://localhost:5173"], // process.env.CLIENT_URL
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
 app.use(fileUpload());
 app.use("/api", router);
 

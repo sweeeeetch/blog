@@ -26,6 +26,21 @@ class PostController {
     }
   }
 
+  static async getMyPosts(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user = req.user;
+      if (!user) {
+        throw ApiError.UnauthorizedError();
+      }
+
+      const posts = await prisma.post.findMany({ where: { author: user.username } });
+
+      return res.json(posts);
+    } catch (e) {
+      next(e);
+    }
+  }
+
   static async getPost(req: Request, res: Response, next: NextFunction) {
     try {
       const id = req.query.id as string;
