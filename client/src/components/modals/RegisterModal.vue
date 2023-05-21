@@ -14,8 +14,8 @@ const handleSubmit = async () => {
     localStorage.setItem("token", response.data.accessToken);
     mainStore.setUser(response.data.user);
     mainStore.closeRegisterModal();
-  } catch (e) {
-    console.log(e);
+  } catch (e: any) {
+    console.log(e.response.message);
     alert(e);
   }
 };
@@ -47,18 +47,23 @@ const changeModal = () => {
           name="email"
           placeholder="Email"
           v-model="email"
+          required
           class="modal__input"
         />
         <input
           type="text"
           name="username"
           placeholder="Username"
+          required
           v-model="username"
           class="modal__input"
         />
         <input
           type="password"
+          min="3"
+          max="32"
           name="password"
+          required
           placeholder="password"
           v-model="password"
           class="modal__input"

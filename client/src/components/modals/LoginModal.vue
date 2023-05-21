@@ -43,13 +43,17 @@ const changeModal = () => {
         <input
           type="text"
           name="email"
+          required
           placeholder="Email"
           v-model="email"
           class="modal__input"
         />
         <input
           type="password"
+          required
           name="password"
+          min="3"
+          max="32"
           placeholder="Password"
           v-model="password"
           class="modal__input"
