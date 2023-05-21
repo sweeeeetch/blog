@@ -63,18 +63,20 @@ In spite of accomplishing blog api, i also added simple UI. I think this is pret
 
 ## Endpoints
 
-This document provides an overview of the backend endpoints available in the application. Below is a description of each endpoint along with the required parameters and expected responses.
+This part provides an overview of the backend endpoints available in the application. Below is a description of each endpoint along with the required parameters and expected responses.
 
-### User Endpoints
+<details>
+  <summary>English version</summary>
+  ### User Endpoints
 
 #### Register a User
 
 - **Endpoint:** `/user/register`
 - **Method:** POST
 - **Request Body:**
-  - `email` (string): User's email address (must be a valid email)
-  - `password` (string): User's password (length between 3 and 32 characters)
-  - `username` (string): User's username (length between 3 and 32 characters)
+  - `email` (string): User's email address 
+  - `password` (string): User's password 
+  - `username` (string): User's username 
 - **Description:** Registers a new user with the provided email, password, and username. Performs validation on the input fields. If successful, returns user data and sets a refresh token cookie.
 - **Responses:**
   - 200 OK: Returns user data.
@@ -138,6 +140,9 @@ This document provides an overview of the backend endpoints available in the app
   - `author` (string): Author name.
   - `userId` (string): User ID of the post creator.
   - `image` (file, optional): Post image file (limited to 5MB).
-- **Description:** Creates a new post with the provided title, content, author, and user ID. Optionally, an image can be uploaded for
-
+- **Description:** Creates a new post with the provided title, content, author, and user ID. Optionally, an image can be also be uploaded.
+</details>
+<details>
+  <summary>Русская версия</summary>
+</details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
