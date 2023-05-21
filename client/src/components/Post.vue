@@ -53,7 +53,7 @@ const handleDelete = async () => {
         v-if="post.image"
       >
         <img
-          :src="`https://blog-api-85me.onrender.com${post.image.split('static')[1]}`"
+          :src="`https://blog-api-85me.onrender.com/static${post.image.split('static')[1]}`"
           :alt="`${post.title} image`"
         />
       </div>
