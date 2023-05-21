@@ -29,13 +29,20 @@ class PostController {
   static async getMyPosts(req: Request, res: Response, next: NextFunction) {
     try {
       const user = req.user;
+      const { page = 1, pageSize = 20 } = req.query;
+      const parsedPage = parseInt(page.toString(), 10);
+      const parsedPageSize = parseInt(pageSize.toString(), 10);
       if (!user) {
         throw ApiError.UnauthorizedError();
       }
 
-      const posts = await prisma.post.findMany({ where: { author: user.username } });
+      const { totalPages, posts } = await PostService.recieveMyPosts(
+        parsedPage,
+        parsedPageSize,
+        user.username
+      );
 
-      return res.json(posts);
+      return res.json({ totalPages, posts });
     } catch (e) {
       next(e);
     }
@@ -43,7 +50,7 @@ class PostController {
 
   static async getPost(req: Request, res: Response, next: NextFunction) {
     try {
-      const id = req.query.id as string;
+      const id = req.params.id as string;
 
       const post = await prisma.post.findUnique({ where: { id } });
       if (!post) {
@@ -63,13 +70,12 @@ class PostController {
       if (req.files) {
         image = req.files?.image as UploadedFile;
       }
-
       let imagePath: string | undefined;
       if (image) {
-        const folderPath = path.resolve(__dirname, "..", "..", "imgs");
-        if (!fs.existsSync(folderPath)) {
-          fs.mkdirSync(folderPath);
-        }
+        const folderPath = path.resolve(__dirname, "..", "..", "client", "public");
+        // if (!fs.existsSync(folderPath)) {
+        //   fs.mkdirSync(folderPath);
+        // }
         if (image.size > 5242880) {
           throw ApiError.BadRequest("Image must be less than 5MB");
         }
