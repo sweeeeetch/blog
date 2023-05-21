@@ -3,6 +3,7 @@ import Post from "@/components/Post.vue";
 import { getPosts, type PostData } from "@/http/postHttp";
 import { onBeforeMount, ref } from "vue";
 import { useMainStore } from "@/stores/mainStore";
+import CreatePostModal from "@/components/modals/CreatePostModal.vue";
 
 const mainStore = useMainStore();
 
@@ -88,6 +89,7 @@ const nextPage = () => {
         Next
       </button>
     </div>
+    <CreatePostModal @update="fetchData()" />
   </main>
 </template>
 

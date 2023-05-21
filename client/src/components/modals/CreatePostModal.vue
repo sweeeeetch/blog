@@ -4,6 +4,8 @@ import { useMainStore } from "@/stores/mainStore";
 import { createPost } from "@/http/postHttp";
 const mainStore = useMainStore();
 
+const emit = defineEmits(["update"]);
+
 const title = ref("");
 const text = ref("");
 const image = ref<File | null>();
