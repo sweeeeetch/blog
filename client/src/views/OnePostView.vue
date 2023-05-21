@@ -55,6 +55,16 @@ const handleDelete = async () => {
     </div>
     <div v-else>
       <h1 class="blogpost__title">{{ post.title }}</h1>
+      <div
+        class="blogpost__image"
+        v-if="post.image"
+      >
+        <img
+          :src="post.image"
+          alt=""
+          class="blogpost__img"
+        />
+      </div>
       <div class="blogpost__additional">
         <p class="blogpost__date">{{ formatedDate }}</p>
         <p class="blogpost__author">Auhtor: {{ post.author }}</p>
@@ -107,6 +117,10 @@ const handleDelete = async () => {
   position: relative;
   &__title {
     font-size: 32px;
+  }
+  &__image {
+    height: 400px;
+    object-fit: contain;
   }
   &__additional {
     max-width: fit-content;
