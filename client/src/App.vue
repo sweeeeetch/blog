@@ -15,7 +15,7 @@ onBeforeMount(async () => {
   try {
     if (!!localStorage.getItem("token")) {
       const response = await axios.get<AuthResponse>(
-        `${import.meta.env.VITE_APP_HOST_URL}user/refresh`,
+        `${import.meta.env.VITE_APP_HOST_URL}/user/refresh`,
         {
           withCredentials: true,
         }
