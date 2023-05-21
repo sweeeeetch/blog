@@ -75,7 +75,7 @@ class PostController {
         const folderPath = path.resolve(__dirname, "..", "static", "imgs");
         console.log(!fs.existsSync(folderPath));
         if (!fs.existsSync(folderPath)) {
-          fs.mkdirSync(folderPath);
+          fs.mkdirSync(folderPath, { recursive: true });
         }
         if (image.size > 5242880) {
           throw ApiError.BadRequest("Image must be less than 5MB");
