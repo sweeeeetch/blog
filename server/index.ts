@@ -22,8 +22,8 @@ app.set("trust proxy", 1);
 app.use(
   cors({
     credentials: true,
-    // origin: process.env.CLIENT_URL,
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL,
+    // origin: "http://localhost:5173",
     exposedHeaders: ["set-cookie"],
   })
 );
