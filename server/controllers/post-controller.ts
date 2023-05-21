@@ -6,7 +6,6 @@ import ApiError from "../exceptions/api-error.js";
 import path from "path";
 import { UploadedFile } from "express-fileupload";
 import { fileURLToPath } from "url";
-import fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -72,7 +71,7 @@ class PostController {
       }
       let imagePath: string | undefined;
       if (image) {
-        const folderPath = path.resolve(__dirname, "..", "..", "client", "public");
+        const folderPath = path.resolve(__dirname, "..", "static", "imgs");
         // if (!fs.existsSync(folderPath)) {
         //   fs.mkdirSync(folderPath);
         // }
@@ -81,6 +80,7 @@ class PostController {
         }
         const filename = v4() + ".jpg";
         imagePath = path.resolve(folderPath, filename);
+        console.log(imagePath);
         await image.mv(imagePath);
       }
 

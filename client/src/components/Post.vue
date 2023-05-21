@@ -26,6 +26,8 @@ const previewText = computed(() => {
   }
 });
 
+console.log(props.post.image);
+
 const formatedDate = computed(() => {
   const date = new Date(props.post.date);
   const formatter = new Intl.DateTimeFormat("ru", {
@@ -51,7 +53,7 @@ const handleDelete = async () => {
         v-if="post.image"
       >
         <img
-          :src="post.image.split('public')[1]"
+          :src="`http://localhost:3000${post.image.split('static')[1]}`"
           :alt="`${post.title} image`"
         />
       </div>
