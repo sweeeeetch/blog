@@ -5,7 +5,8 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "docker-compose up -d && rm -rf dist && tsc && node dist/index.js"
   },
   "keywords": [],
   "author": "",

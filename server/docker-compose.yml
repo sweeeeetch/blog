@@ -15,3 +15,10 @@ services:
       - "27018:27018"
     volumes:
       - ./data:/data/db
+  prisma:
+    build: ./prisma
+    depends_on:
+      - mongo
+    environment:
+      DATABASE_URL: "mongodb://root:prisma@localhost:27018/mongo?authSource=admin"
+    command: sh -c "while ! nc -z mongo 5432; do sleep 1; done && npx prisma db push"
