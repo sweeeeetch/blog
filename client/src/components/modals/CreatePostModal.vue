@@ -18,7 +18,6 @@ const handleSubmit = async () => {
       image: image.value ? image.value : undefined,
     });
     mainStore.closeCreateModal();
-    window.location.reload();
   } catch (e) {
     console.log(e);
   }
