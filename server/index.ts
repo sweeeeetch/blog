@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
-import { shouldSendSameSiteNone } from "should-send-same-site-none";
 import router from "./router/index.js";
 import { PrismaClient } from "@prisma/client";
 import errorHandler from "./middlewares/error-handler.js";
@@ -24,7 +23,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
-app.use(shouldSendSameSiteNone);
 app.use("/api", router);
 
 app.use(errorHandler);

@@ -16,7 +16,7 @@ class UserController {
 
       res.cookie("refreshToken", userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-
+        httpOnly: true,
         sameSite: "none",
         secure: true,
       });
@@ -34,7 +34,7 @@ class UserController {
 
       res.cookie("refreshToken", userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-
+        httpOnly: true,
         sameSite: "none",
         secure: true,
       });
@@ -50,7 +50,7 @@ class UserController {
       const { refreshToken } = req.cookies;
       await UserService.logout(refreshToken);
 
-      res.clearCookie("refreshToken", { sameSite: "none", secure: true });
+      res.clearCookie("refreshToken", { httpOnly: true, sameSite: "none", secure: true });
 
       return res.sendStatus(200);
     } catch (e) {
@@ -65,7 +65,7 @@ class UserController {
 
       res.cookie("refreshToken", userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
-
+        httpOnly: true,
         secure: true,
         sameSite: "none",
       });
