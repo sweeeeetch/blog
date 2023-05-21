@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 export const prisma = new PrismaClient();
 
-app.use("/static", express.static(__dirname + "/static"));
+app.use("/static", express.static(path.resolve(__dirname + "/static")));
 app.set("trust proxy", 1);
 app.use(
   cors({
