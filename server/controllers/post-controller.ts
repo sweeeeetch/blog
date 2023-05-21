@@ -6,6 +6,7 @@ import ApiError from "../exceptions/api-error.js";
 import path from "path";
 import { UploadedFile } from "express-fileupload";
 import { fileURLToPath } from "url";
+import fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -72,9 +73,9 @@ class PostController {
       let imagePath: string | undefined;
       if (image) {
         const folderPath = path.resolve(__dirname, "..", "static", "imgs");
-        // if (!fs.existsSync(folderPath)) {
-        //   fs.mkdirSync(folderPath);
-        // }
+        if (!fs.existsSync(folderPath)) {
+          fs.mkdirSync(folderPath);
+        }
         if (image.size > 5242880) {
           throw ApiError.BadRequest("Image must be less than 5MB");
         }
