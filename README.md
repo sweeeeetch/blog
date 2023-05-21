@@ -75,9 +75,9 @@ This part provides an overview of the backend endpoints available in the applica
 - **Endpoint:** `/user/register`
 - **Method:** POST
 - **Request Body:**
-  - `email` (string): User's email address 
-  - `password` (string): User's password 
-  - `username` (string): User's username 
+  - `email` (string): User's email address
+  - `password` (string): User's password
+  - `username` (string): User's username
 - **Description:** Registers a new user with the provided email, password, and username. Performs validation on the input fields. If successful, returns user data and sets a refresh token cookie.
 - **Responses:**
   - 200 OK: Returns user data.
@@ -142,21 +142,76 @@ This part provides an overview of the backend endpoints available in the applica
   - `userId` (string): User ID of the post creator.
   - `image` (file, optional): Post image file (limited to 5MB).
 - **Description:** Creates a new post with the provided title, content, author, and user ID. Optionally, an image can be also be uploaded.
+- **Responses:**
+  - 200 OK: Returns the created post data.
+  - 401 Unauthorized: User is not authenticated.
+  - 500 Internal Server Error: An error occurred while retrieving the user's posts.
+
+#### Edit Post
+
+- **Endpoint:** `/posts/edit`
+- **Method:** PUT
+- **Query parameters:**
+  - `id` (string): Id of post to be editted
+- **Request Body:**
+  - `title` (string, optional): Editted title.
+  - `text` (string, optional): Editted post content.
+- **Description:** Edits existing post, changing one or both parts of post.
+- **Responses:**
+  - 200 OK: Returns the 200 status code.
+  - 401 Unauthorized: User is not authenticated or is not author of post.
+  - 500 Internal Server Error: An error occurred while retrieving the user's posts.
+
+#### Delete Post
+
+- **Endpoint:** `/posts/delete`
+- **Method:** DELETE
+- **Query parameters:**
+  - `id` (string): Id of post to be deleted
+- **Description:** Deletes post from database by id. Also checks whether user is author of post or not by jwt token.
+- **Responses:**
+  - 200 OK: Returns the 200 status code.
+  - 401 Unauthorized: User is not authenticated or is not author of post.
+  - 500 Internal Server Error: An error occurred while deleting post.
+
+#### Get all Posts
+
+- **Endpoint:** `/posts/get`
+- **Method:** GET
+- **Query Parameters:**
+  - `page` (optional, number): Page number for pagination (default: 1).
+  - `pageSize` (optional, number): Number of posts per page (default: 20).
+- **Description:** Retrieves all posts created by all users.
+- **Responses:**
+  - 200 OK: Returns the total number of pages and posts.
+  - 500 Internal Server Error: An error occurred while retrieving the posts.
+
+#### Get one Post
+
+- **Endpoint:** `/posts/get`
+- **Method:** GET
+- **Query Parameters:**
+  - `id` (string): Post id to be returned.
+- **Description:** Returns one post by id.
+- **Responses:**
+  - 200 OK: Returns the post data.
+  - 500 Internal Server Error: An error occurred while retrieving the posts.
+
 </details>
 <details>
   <summary>Русская версия</summary>
 
-### Конечные точки пользователей
+### Эндпоинты пользователей
 
 #### Регистрация пользователя
 
-- **Конечная точка:** `/user/register`
+- **Эндпоинт:** `/user/register`
 - **Метод:** POST
 - **Тело запроса:**
-  - `email` (строка): Email пользователя (должен быть валидным email-адресом).
-  - `password` (строка): Пароль пользователя (длина от 3 до 32 символов).
-  - `username` (строка): Имя пользователя (длина от 3 до 32 символов).
-- **Описание:** Регистрирует нового пользователя с указанным email, паролем и именем пользователя. Выполняет проверку введенных полей. В случае успешной регистрации возвращает данные пользователя и устанавливает cookie с токеном обновления.
+  - `email` (строка): Email пользователя.
+  - `password` (строка): Пароль пользователя.
+  - `username` (строка): Имя пользователя.
+- **Описание:** Регистрирует нового пользователя с указанным email, паролем и именем пользователя. Выполняет проверку введенных полей. В случае успешной регистрации возвращает данные пользователя и устанавливает cookie с refresh токеном.
 - **Ответы:**
   - 200 OK: Возвращает данные пользователя.
   - 400 Неверный запрос: Ошибка валидации или неверные входные данные.
@@ -164,7 +219,7 @@ This part provides an overview of the backend endpoints available in the applica
 
 #### Авторизация пользователя
 
-- **Конечная точка:** `/user/login`
+- **Эндпоинт:** `/user/login`
 - **Метод:** POST
 - **Тело запроса:**
   - `email` (строка): Email пользователя.
@@ -177,7 +232,7 @@ This part provides an overview of the backend endpoints available in the applica
 
 #### Выход пользователя
 
-- **Конечная точка:** `/user/logout`
+- **Эндпоинт:** `/user/logout`
 - **Метод:** POST
 - **Описание:** Выход текущего авторизованного пользователя. Очищает cookie с токеном обновления.
 - **Ответы:**
@@ -186,7 +241,7 @@ This part provides an overview of the backend endpoints available in the applica
 
 #### Обновление токена пользователя
 
-- **Конечная точка:** `/user/refresh`
+- **Эндпоинт:** `/user/refresh`
 - **Метод:** GET
 - **Описание:** Обновляет токен доступа для текущего авторизованного пользователя, используя cookie с токеном обновления. В случае успешного обновления возвращает обновленные данные пользователя и обновляет cookie с токеном обновления.
 - **Ответы:**
@@ -198,7 +253,7 @@ This part provides an overview of the backend endpoints available in the applica
 
 #### Получение постов пользователя
 
-- **Конечная точка:** `/posts/myposts`
+- **Эндпоинт:** `/posts/myposts`
 - **Метод:** GET
 - **Параметры запроса:**
   - `page` (необязательно, число): Номер страницы для пагинации (по умолчанию: 1).
@@ -211,7 +266,7 @@ This part provides an overview of the backend endpoints available in the applica
 
 #### Создание поста
 
-- **Конечная точка:** `/posts/create`
+- **Эндпоинт:** `/posts/create`
 - **Метод:** POST
 - **Тело запроса:**
   - `title` (строка): Заголовок поста.
@@ -225,5 +280,54 @@ This part provides an overview of the backend endpoints available in the applica
   - 401 Неавторизован: Пользователь не авторизован.
   - 500 Внутренняя ошибка сервера: Возникла ошибка при создании поста.
 
-</details>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+#### Редактирование поста
+
+- **Эндпоинт:** `/posts/edit`
+- **Метод:** PUT
+- **Параметры запроса:**
+  - `id` (строка): Идентификатор редактируемого поста.
+- **Тело запроса:**
+  - `title` (строка, необязательно): Измененный заголовок.
+  - `text` (строка, необязательно): Измененное содержимое поста.
+- **Описание:** Редактирует существующий пост, изменяя заголовок или содержимое, или оба значения.
+- **Ответы:**
+  - 200 OK: Возвращает код состояния 200.
+  - 401 Неавторизован: Пользователь не аутентифицирован или не является автором поста.
+  - 500 Внутренняя ошибка сервера: Возникла ошибка при получении постов пользователя.
+
+#### Удаление поста
+
+- **Эндпоинт:** `/posts/delete`
+- **Метод:** DELETE
+- **Параметры запроса:**
+  - `id` (строка): Идентификатор удаляемого поста.
+- **Описание:** Удаляет пост из базы данных по его идентификатору. Также проверяет, является ли пользователь автором поста по токену JWT.
+- **Ответы:**
+  - 200 OK: Возвращает код состояния 200.
+  - 401 Неавторизован: Пользователь не аутентифицирован или не является автором поста.
+  - 500 Внутренняя ошибка сервера: Возникла ошибка при удалении поста.
+
+#### Получение всех постов
+
+- **Эндпоинт:** `/posts/get`
+- **Метод:** GET
+- **Параметры запроса:**
+  - `page` (необязательно, число): Номер страницы для пагинации (по умолчанию: 1).
+  - `pageSize` (необязательно, число): Количество постов на странице (по умолчанию: 20).
+- **Описание:** Возвращает все посты, созданные всеми пользователями.
+- **Ответы:**
+  - 200 OK: Возвращает общее количество страниц и посты.
+  - 500 Внутренняя ошибка сервера: Возникла ошибка при получении постов.
+
+#### Получение одного поста
+
+- **Эндпоинт:** `/posts/get`
+- **Метод:** GET
+- **Параметры запроса:**
+  - `id` (строка): Идентификатор поста для получения.
+- **Описание:** Возвращает один пост по его идентификатору.
+- **Ответы:**
+  - 200 OK: Возвращает данные поста.
+  - 500 Внутренняя ошибка сервера: Возникла ошибка при получении постов.
+  </details>
+  <p align="right">(<a href="#readme-top">back to top</a>)</p>
