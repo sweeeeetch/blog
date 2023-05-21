@@ -15,7 +15,7 @@ export const prisma = new PrismaClient();
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.CLIENT_URL as string, "http://localhost:5173"], // process.env.CLIENT_URL
+    origin: process.env.CLIENT_URL, 
   })
 );
 app.use(express.json());
