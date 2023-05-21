@@ -18,7 +18,15 @@ app.use(
   cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
-    allowedHeaders: "*",
+    allowedHeaders: [
+      "Authorization",
+      "Content-Type",
+      "Set-Cookie",
+      "Accept",
+      "X-Requested-With",
+      "X-CSRF-Token",
+      "Cache-Control",
+    ],
   })
 );
 app.use(express.json());
