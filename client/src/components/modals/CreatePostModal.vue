@@ -6,8 +6,6 @@ const mainStore = useMainStore();
 
 const title = ref("");
 const text = ref("");
-const author = ref(mainStore.user.username);
-const userId = ref(mainStore.user.id);
 const image = ref<File | null>();
 
 const handleSubmit = async () => {
@@ -15,8 +13,8 @@ const handleSubmit = async () => {
     await createPost({
       title: title.value,
       text: text.value,
-      author: author.value,
-      userId: userId.value,
+      author: mainStore.user.username,
+      userId: mainStore.user.id,
       image: image.value ? image.value : undefined,
     });
     mainStore.closeCreateModal();
@@ -71,14 +69,6 @@ const handleFileChange = (event: Event) => {
         <input
           type="file"
           @change="handleFileChange"
-        />
-        <input
-          type="hidden"
-          v-model="author"
-        />
-        <input
-          type="hidden"
-          v-model="userId"
         />
         <button
           type="submit"

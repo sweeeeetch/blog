@@ -1,11 +1,9 @@
 import type { IUser } from "@/http/authHttp";
 import { defineStore } from "pinia";
 
-const user = { email: "aye@mail.ru", username: "asdfdasfsaf", id: "6468ba07b6257e47ae3194c7" };
-
 export const useMainStore = defineStore("mainStore", {
   state: () => ({
-    user: user as IUser,
+    user: {} as IUser,
     isRegisterModalOpen: false,
     isLoginModalOpen: false,
     isCreateModalOpen: false,

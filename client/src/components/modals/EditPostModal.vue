@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useMainStore } from "@/stores/mainStore";
-import { createPost, editPost } from "@/http/postHttp";
+import { editPost } from "@/http/postHttp";
 const mainStore = useMainStore();
 
 const emit = defineEmits(["change"]);
