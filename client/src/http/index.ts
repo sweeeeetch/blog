@@ -8,15 +8,7 @@ const $api = axios.create({
 
 $api.interceptors.request.use(config => {
   config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
-  config.headers["Access-Control-Allow-Headers"] = [
-    "Authorization",
-    "Content-Type",
-    "Set-Cookie",
-    "Accept",
-    "X-Requested-With",
-    "X-CSRF-Token",
-    "Cache-Control",
-  ];
+  config.headers["Access-Control-Allow-Headers"] = "*";
   config.withCredentials = true;
   return config;
 });
