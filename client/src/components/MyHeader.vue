@@ -19,7 +19,7 @@ const logOut = async () => {
     >
     <div
       class="header__signed"
-      v-if="Object.keys(mainStore.user).length > 0"
+      v-if="Object.keys(mainStore.user).length"
     >
       <router-link
         to="/posts"

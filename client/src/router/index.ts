@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import PostsView from "@/views/PostsView.vue";
+import OnePostView from "@/views/OnePostView.vue";
 import { useMainStore } from "@/stores/mainStore";
 
 const router = createRouter({
@@ -16,12 +17,17 @@ const router = createRouter({
       name: "posts",
       component: PostsView,
     },
+    {
+      path: "/post/:id",
+      name: "post",
+      component: OnePostView,
+    },
   ],
 });
 
 router.beforeEach((to, from, next) => {
   const store = useMainStore();
-  if (to.name === "posts" && !(Object.keys(store.user).length > 0)) {
+  if (to.name === "posts" && !Object.keys(store.user).length) {
     next({ name: "home" });
   } else {
     next();
