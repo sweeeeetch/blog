@@ -34,6 +34,13 @@ app.use(fileUpload());
 app.get("/healthz", (req, res) => {
   return res.sendStatus(200);
 });
+
+app.get("/static/:file", async (req, res) => {
+  const { file } = req.params;
+  const imagePath = path.join(__dirname, "static", file);
+  return res.sendFile(imagePath);
+});
+
 app.use("/api", router);
 
 app.use(errorHandler);
