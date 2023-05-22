@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon",
-    "build": "rm -rf dist && npx tsc && copyfiles \"static/**/*.+(jpg|jpeg|png|gif)\" dist",
+    "build": "rm -rf dist && tsc && copyfiles \"static/**/*.+(jpg|jpeg|png|gif)\" dist",
     "start": "npm run build && node dist/index.js"
   },
   "keywords": [],
