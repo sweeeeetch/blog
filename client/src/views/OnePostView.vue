@@ -62,7 +62,7 @@ const handleDelete = async () => {
         <img
           :src="`https://blog-m0ye.onrender.com/${post.image.split('dist/')[1]}`"
           alt=""
-          class="blogpost__img"
+          class="blogpost__image"
         />
       </div>
       <div class="blogpost__additional">
