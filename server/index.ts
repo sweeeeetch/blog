@@ -30,10 +30,10 @@ app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
-app.use("/api", router);
 app.get("/healthz", (req, res) => {
-  return res.status(200);
+  return res.sendStatus(200);
 });
+app.use("/api", router);
 
 app.use(errorHandler);
 const start = async () => {
