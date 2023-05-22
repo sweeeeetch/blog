@@ -17,8 +17,6 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 export const prisma = new PrismaClient();
 
-app.use("/static", express.static(path.resolve(__dirname + "static")));
-app.set("trust proxy", 1);
 app.use(
   cors({
     credentials: true,
@@ -27,6 +25,8 @@ app.use(
     exposedHeaders: ["set-cookie"],
   })
 );
+app.use("/static", express.static(path.resolve(__dirname + "static")));
+app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
