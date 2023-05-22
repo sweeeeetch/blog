@@ -80,7 +80,7 @@ class PostController {
         if (image.size > 5242880) {
           throw ApiError.BadRequest("Image must be less than 5MB");
         }
-        const filename = v4() + ".jpg";
+        const filename = `${Date.now()}.jpg`;
         imagePath = path.resolve(folderPath, filename);
         console.log(imagePath);
         await image.mv(imagePath);
