@@ -60,7 +60,7 @@ const handleDelete = async () => {
         v-if="post.image"
       >
         <img
-          :src="post.image"
+          :src="`https://blog-m0ye.onrender.com/${post.image.split('dist/')[1]}`"
           alt=""
           class="blogpost__img"
         />
