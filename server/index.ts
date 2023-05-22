@@ -25,7 +25,7 @@ app.use(
     exposedHeaders: ["set-cookie"],
   })
 );
-app.use("/public", express.static(path.resolve(__dirname + "static")));
+app.use("/static", express.static(path.resolve(__dirname + "static")));
 app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
