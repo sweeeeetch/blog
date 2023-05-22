@@ -31,6 +31,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
 app.use("/api", router);
+app.get("/healthz", (req, res) => {
+  return res.status(200);
+});
 
 app.use(errorHandler);
 const start = async () => {
