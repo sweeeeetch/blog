@@ -72,8 +72,7 @@ class PostController {
       }
       let imagePath: string | undefined;
       if (image) {
-        const folderPath = path.join(__dirname, "..", "static", "image");
-        console.log(!fs.existsSync(folderPath));
+        const folderPath = path.join(__dirname, "..", "static");
         if (!fs.existsSync(folderPath)) {
           fs.mkdirSync(folderPath, { recursive: true });
         }
