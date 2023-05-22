@@ -18,7 +18,7 @@ class UserController {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         sameSite: "none",
         secure: true,
-        domain: "*.run",
+        domain: "*.app",
       });
 
       return res.json(userData);
