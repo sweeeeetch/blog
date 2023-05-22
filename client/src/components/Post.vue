@@ -26,8 +26,6 @@ const previewText = computed(() => {
   }
 });
 
-console.log(props.post.image);
-
 const formatedDate = computed(() => {
   const date = new Date(props.post.date);
   const formatter = new Intl.DateTimeFormat("ru", {

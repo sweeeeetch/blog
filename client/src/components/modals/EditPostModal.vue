@@ -18,6 +18,8 @@ const handleSubmit = async () => {
     });
     mainStore.closeEditModal();
     emit("change");
+    title.value = "";
+    text.value = "";
   } catch (e) {
     console.log(e);
   }

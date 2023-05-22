@@ -20,6 +20,9 @@ const handleSubmit = async () => {
       image: image.value ? image.value : undefined,
     });
     mainStore.closeCreateModal();
+    title.value = "";
+    text.value = "";
+    emit("update");
   } catch (e) {
     console.log(e);
   }
