@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon",
-    "build": "rm -rf dist && tsc && copyfiles \"static/**/*.+(jpg|jpeg|png|gif)\" dist",
+    "build": "rm -rf dist && tsc",
     "start": "npm run build && node dist/index.js"
   },
   "keywords": [],
@@ -21,7 +21,6 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.2.1",
     "@types/uuid": "^9.0.1",
-    "copyfiles": "^2.4.1",
     "nodemon": "^2.0.22",
     "prisma": "^4.14.1",
     "ts-node": "^10.9.1"
@@ -35,10 +34,7 @@
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "express-validator": "^7.0.1",
-    "i": "^0.3.7",
     "jsonwebtoken": "^9.0.0",
-    "npm": "^9.6.7",
-    "should-send-same-site-none": "^2.0.5",
     "uuid": "^9.0.0"
   }
 }

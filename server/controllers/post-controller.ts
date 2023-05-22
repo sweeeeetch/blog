@@ -81,18 +81,7 @@ class PostController {
         }
         const filename = `${Date.now()}.jpg`;
         imagePath = path.resolve(folderPath, filename);
-        console.log(imagePath);
         await image.mv(imagePath);
-        fs.readdir(folderPath, (err, files) => {
-          if (err) {
-            console.error("Error reading directory:", err);
-            return;
-          }
-
-          files.forEach(file => {
-            console.log(file);
-          });
-        });
       }
 
       const post = await prisma.post.create({

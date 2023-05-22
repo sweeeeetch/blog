@@ -6,12 +6,7 @@ import fileUpload from "express-fileupload";
 import router from "./router/index.js";
 import { PrismaClient } from "@prisma/client";
 import errorHandler from "./middlewares/error-handler.js";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-console.log(__filename);
+import staticMiddleware from "./middlewares/staticMiddleware.js";
 
 dotenv.config();
 const app = express();
@@ -22,23 +17,17 @@ app.use(
   cors({
     credentials: true,
     origin: process.env.CLIENT_URL,
-    // origin: "http://localhost:5173",
     exposedHeaders: ["set-cookie"],
   })
 );
-app.use("/static", express.static(path.resolve(__dirname + "static")));
+app.use("/static", staticMiddleware);
 app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
+
 app.get("/healthz", (req, res) => {
   return res.sendStatus(200);
-});
-
-app.get("/static/:file", async (req, res) => {
-  const { file } = req.params;
-  const imagePath = path.join(__dirname, "static", file);
-  return res.sendFile(imagePath);
 });
 
 app.use("/api", router);

@@ -67,7 +67,28 @@ This part provides an overview of the backend endpoints available in the applica
 
 <details>
   <summary>English version</summary>
-  
+
+### Server endpoints
+
+#### Health endpoint
+
+- **Endpoint:** `/healthz`
+- **Method:** GET
+- **Description:** This endpoint always returns 200 OK status. This endpoint is made for checking whether server is alive or not.
+- **Responses:**
+  - 200 OK: Returns 200 OK.
+
+#### Static files endpoint
+
+- **Endpoint:** `/static/`
+- **Method:** GET
+- **Query Parameters:**
+  - `file` (string): Name of file to be returned.
+- **Description:** This endpoint returns static files like express, but in my case i couldnt find out why express cant serve static files on server.
+- **Responses:**
+  - 200 OK: Returns file.
+  - 404 Not Found: Returns 404 code.
+
 ### User Endpoints
 
 #### Register a User
